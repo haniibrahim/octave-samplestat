@@ -1,6 +1,6 @@
 ## -*- texinfo -*-
 ##
-##@deftypefn {Function File} @var{retval} = strayarea(@var{v}, @var{n}, @var{p})
+##@deftypefn {Function File} @var{retval} = strayarea(@var{v}, @var{p})
 ##
 ##"strayarea" @var{retval} is the range of dispersion of the values and is 
 ##calculated as s * t. (t = student factor, dependent on the confidence level P% =
@@ -11,16 +11,15 @@
 ##around mean + @var{retval} and mean - @var{retval}. the strayarea is the 
 ##parameter which specify the quality of the raw values.
 ##
-##@var{v} is a vector of numerical values, @var{n} is the number of values of @var{v}.
-##@var{p} is the statistical confidence level committed as a string ("95%", 
-##"99%" or "99.9%").
+##@var{v} is a vector of numerical values, @var{p} is the statistical confidence
+##level committed as a string ("95%", "99%" or "99.9%").
 ##
 ##@example
 ##@group
 ##V = [6 8 14 12 5 15];
 ##mean(V)
 ##@result{} 10.
-##strayarea(V, length(V), "95%")
+##strayarea(V, "95%")
 ##@result{} 10.904
 ##
 ##In the given vector "@var{v}" 95% of all values will stray about 10.9 around
@@ -32,15 +31,17 @@
 
 # Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
 # License: GPL 3.0
-function retval = strayarea(v, n, p)
+function retval = strayarea(v, p)
 
   % Check arguments
-  if (nargin == 0 || nargin > 3); print_usage(); endif
+  if (nargin == 0 || nargin > 2); print_usage(); endif
   if (~isnumeric(v) || ~isvector(v)); error("First argument has to be a numeric vector\n"); endif
-  if (~isnumeric(n) || (n-floor(n) != 0)) ; error("Second argument is the number of values and has to be an integer"); endif
   if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%"))
-    error("Third argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\" or \"99.9%\"");
+    error("Second argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\" or \"99.9%\"");
   endif
+  
+  % Number of values
+  n = length(v);
 
   if studentfactor(n, p) < 0
     retval = -1.0;

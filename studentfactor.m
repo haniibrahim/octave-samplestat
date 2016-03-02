@@ -18,6 +18,7 @@
 ##@result{} 3.6028
 ##@end group
 ##@end example
+##@seealso{strayarea(), trustarea(), mean(), std(), min(), max()}
 ##@end deftypefn
 
 # Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
@@ -27,7 +28,9 @@ function retval = studentfactor(n, p)
   
   % Check arguments
   if (nargin == 0 || nargin > 2); print_usage(); endif
-  if (~isnumeric(n) || (n-floor(n) != 0)) ; error("First argument is the number of values and has to be an integer"); endif
+  if (~isnumeric(n) || (n-floor(n) != 0))
+    error("First argument is the number of values and has to be an integer"); 
+  endif
   if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%"))
     error("Second argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\" or \"99.9%\"");
   endif
