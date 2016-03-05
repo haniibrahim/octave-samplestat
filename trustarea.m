@@ -31,7 +31,7 @@
 # License: GPL 3.0
 function retval = trustarea(v, p)
   % Check arguments
-  if (nargin == 0 || nargin > 2); print_usage(); endif
+  if (nargin <= 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(v) || ~isvector(v)); error("First argument has to be a numeric vector\n"); endif
   if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%"))
     error("Second argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\" or \"99.9%\"");
