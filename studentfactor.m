@@ -27,7 +27,7 @@
 function retval = studentfactor(n, p)
   
   % Check arguments
-  if (nargin <= 2 || nargin > 2); print_usage(); endif
+  if (nargin < 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(n) || (n-floor(n) != 0))
     error("First argument is the number of values and has to be an integer"); 
   endif
