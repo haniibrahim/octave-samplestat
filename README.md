@@ -17,7 +17,7 @@ It contains the following functions:
   - Pearson-Hartley - *pearsonhartley.m*
   - Grubbs - *grubbs.m*
   - Grubbs (2-sided) - *grubbs2.m*
-  - Nalimov*
+  - Nalimov
 - Test for normal distribution
   - Chi-squared*
   - Shapiro-Wilk*
