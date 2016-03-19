@@ -6,6 +6,8 @@ This package is made for normal distributed, natural scientific (chemistry, phys
 
 But they are some tests for bigger distributions, like Pearson-Hartley, Grubbs and Chi-squared test.
 
+These functions are good to extend the built-in functions mean(), std(), max(), min(), median() and the [statistics package](http://octave.sourceforge.net/statistics/index.html) maintained by Arno Onken at [Octave Forge](http://octave.sourceforge.net/index.html).
+
 ## Functions
 
 It contains the following functions:
@@ -17,13 +19,10 @@ It contains the following functions:
   - Pearson-Hartley - *pearsonhartley.m*
   - Grubbs - *grubbs.m*
   - Grubbs (2-sided) - *grubbs2.m*
-  - Nalimov
+  - Nalimov - *nalimov.m*
 - Test for normal distribution
   - Chi-squared*
   - Shapiro-Wilk*
-- Graphs
-  - Tukey's boxplot*
-- Make an Octave package*
 
 *not implemented yet
 
@@ -37,8 +36,9 @@ help <function-name>
 e.g.:
 ```
 help deandixon
-
- -- Function File: [ OUTLIERFREE , OUTLIER] = deandixon(V, P)
+```
+```
+ -- Function File: [OUTLIERFREE, OUTLIER] = deandixon(V, P)
 
      "deandixon" performs a Dean-Dixon outliertest based on R.B. Dean,
      W.J. Dixon, "Simplified statistics for small numbers of
@@ -61,8 +61,8 @@ help deandixon
           => o =  35
 
           In the committed vector DATA which contains less than 30 values is
-          checked for outliers with a probability of 95%. The value 35 is a significant
-          outlier.
+          checked for outliers with a confidence level of 95%. The value 35 is 
+          a significant outlier.
 
 
 Additional help for built-in functions and operators is
