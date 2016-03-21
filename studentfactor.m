@@ -2,23 +2,37 @@
 ##
 ##@deftypefn {Function File} @var{retval} = studentfactor(@var{n}, @var{p})
 ##
+##Servicefunction for strayarea() and trustarea():
 ##Determine the student factor from the internal t-table and interpolate the value if
 ##necessary.
 ##
-##@var{n} is the number of values in the sample distribution, committed as 
-##integer. @var{p} is the statistical confidence level (95%, 99% or 99.9%), 
-##committed as string. @var{retval} is a the student factor, showed as double. 
+##@var{n} is the number of values in the sample distribution, committed as an
+##integer. @var{p} is the statistical confidence level as percent in a string or
+##the level of significance (alpha) as a decimal value.
 ##
 ##@example
 ##@group
-##studentfactor(41, "99%")
-##@result{} 2.5830
-##
-##studentfactor(35, "99.9%")
-##@result{} 3.6028
+##conf. level   level of signif.
+##------------------------------
+##  "95%"             0.05
+##  "99%"             0.01
+##  "99.9%"           0.001
 ##@end group
 ##@end example
-##@seealso{strayarea(), trustarea(), mean(), std(), min(), max()}
+##
+##@var{retval} is a the student factor. 
+##
+##Example:
+##@example
+##@group
+##studentfactor(35, "95%")
+##@result{} 2.0324
+##
+##studentfactor(35, 0.05)
+##@result{} 2.0324
+##@end group
+##@end example
+##@seealso{}
 ##@end deftypefn
 
 # Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
@@ -31,16 +45,19 @@ function retval = studentfactor(n, p)
   if (~isnumeric(n) || (n-floor(n) != 0))
     error("First argument is the number of values and has to be an integer"); 
   endif
-  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%"))
-    error("Second argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\" or \"99.9%\"");
+   if (n < 2 || n > 1000); error("First value has to be greater or equal 2 and less or equal 1000"); endif
+  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%") || p != 0.05 || ...
+        p != 0.01 || p != 0.001)
+    error("Second argument is the statistical confidence level and has to be a string, \
+as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
   endif
 
   % Contains the Student factor t-table
   % ===================================
   % Column 1 : Degree of freedom (f)
-  % Column 2 : Student factor, 95% confidence level
-  % Column 3 : Student factor, 99% confidence level
-  % Column 4 : Student factor, 99.9% confidence level
+  % Column 2 : Student factor, confidence level: 95%, level of significance = 0.05
+  % Column 3 : Student factor, confidence level: 99%, level of significance = 0.01
+  % Column 4 : Student factor, confidence level: 99.9%, level of significance = 0.001
   ttable = [ ...
     1.0, 12.71,  63.66, 636.62; ...
     2.0,  4.30,   9.92,  31.60; ...
@@ -86,32 +103,46 @@ function retval = studentfactor(n, p)
   switch(p)
     case("95%")
       j = 2;
+    case(0.05)
+      j = 2;
     case("99%")
+      j = 3;
+    case(0.01)
       j = 3;
     case("99.9%")
       j = 4;
+    case(0.001)
+      j = 4;
     otherwise
-      retval = -1.0;
-      return;
+      error("Second argument is the statistical confidence level and has to be a string, \
+as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
   endswitch
   
   % Pick the correct studentfactor out of the t-table and interpolate if necessary
   if (f >= 1 && f <= 20)
     retval = ttable(f,j);
   elseif (f >= 21  && f <= 50)
-    k = floor(f/5) * 5;
-    i = 20 + floor((f-20)/5);
-    retval = ttable(i,j)-((ttable(i,j)-ttable(i+1,j))/5.0*(f-k));
+     i = 16 + floor(f/5); % Determine row, 16=correction factor
+    qs = (ttable(i,j) - ttable(i+1,j))/5;
+    mul = f - ttable(i,1); % Multiplicator for qs
+    retval = ttable(i,j) - (mul * qs);
   elseif (f >= 51  && f <=100)
-    k = f -50;
-    i = 23;
-    retval = ttable(i,j)-((ttable(i,j)-ttable(i+1,j))/50.0*k);
+    i = 25 + floor(f/50); % Determine row, 25=correction factor
+    qs = (ttable(i,j) - ttable(i+1,j))/50;
+    mul = f - ttable(i,1); % Multiplicator for qs
+    retval = ttable(i,j) - (mul * qs);
   elseif (f >= 101 && f <=800)
-    k = floor(f/100) * 100;
-    i = 26 + floor(f/100);
-    retval = ttable(i,j)-((ttable(i,j)-ttable(i+1,j))/100.0*(f-k));
-  elseif (f >=801)
-    retval = ttable(35, J);
+    i = 26 + floor(f/100); % Determine row, 26=correction factor
+    qs = (ttable(i,j) - ttable(i+1,j))/100;
+    mul = f - ttable(i,1); % Multiplicator for qs
+    retval = ttable(i,j) - (mul * qs);
+  elseif (f >=801 && f <= 998)
+    i = 30 + floor(f/200); % Determine row, 30=correction factor
+    qs = (ttable(i,j) - ttable(i+1,j))/199;
+    mul = f - ttable(i,1); % Multiplicator for qs
+    retval = ttable(i,j) - (mul * qs);
+  elseif (f == 999)
+    retval = ttable(35,j);
   else
     retval = -2.0;
   endif

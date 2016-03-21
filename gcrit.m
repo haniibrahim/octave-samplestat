@@ -7,10 +7,11 @@
 ##Grubbs outlier test.
 ##
 ##In the Grubbs outlier test you compare @var{gcritval} with a calculated 
-##Q value. Refer mentioned paper below.
+##Q value.
 ##
 ##@var{n} has to be between: 3 <= @var{n} <= 600. @var{p} is "95% or "99%".
 ##
+##EXAMPLE
 ##@example
 ##@group
 ##V = [6 8 14 12 5 15];

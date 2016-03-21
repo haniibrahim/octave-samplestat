@@ -1,6 +1,6 @@
 ## -*- texinfo -*-
 ##
-##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}}] = deandixon(@var{v}, @var{p})
+##@deftypefn {Function File} {[@var{outlierfree}, @var{outlier}}] =} deandixon(@var{v}, @var{p})
 ##
 ##"deandixon" performs a Dean-Dixon outliertest based on R.B. Dean, W.J. Dixon,
 ##"Simplified statistics for small numbers of observations", Anal.Chem. 23 
@@ -16,6 +16,7 @@
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier value. 
 ##
+##EXAMPLE
 ##@example
 ##@group
 ##data = [6 8 14 12 35 15];
@@ -28,11 +29,11 @@
 ##outlier. 
 ##@end group
 ##@end example
-##@seealso{pearsonhartley(), grubbs()}
+##@seealso{pearsonhartley(), grubbs(), grubbs2(), nalimov()}
 ##@end deftypefn
 
-# Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
-# License: GPL 3.0
+## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+## License: GPL 3.0
 
 function [outlierfree, outlier] = deandixon(v, p)
   % Checking arguments
