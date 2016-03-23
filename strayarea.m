@@ -11,8 +11,20 @@
 ##around mean + @var{retval} and mean - @var{retval}. the strayarea is the 
 ##parameter which specify the quality of the raw values.
 ##
-##@var{v} is a vector of numerical values, @var{p} is the statistical confidence
-##level committed as a string ("95%", "99%" or "99.9%").
+##@var{v} is a vector of numerical values, @var{p} is the statistical confidence level (%) in a string or
+##the level of significance (alpha) as a decimal value.
+##
+##@example
+##@group
+##conf. level   level of signif.
+##------------------------------
+##  "95%"             0.05
+##  "99%"             0.01
+##  "99.9%"           0.001
+##@end group
+##@end example
+##
+##Example:
 ##
 ##@example
 ##@group
@@ -22,22 +34,27 @@
 ##strayarea(V, "95%")
 ##@result{} 10.904
 ##
+##strayarea(V, 0.05)
+##@result{} 10.904
+##
 ##In the given vector "@var{v}" 95% of all values will stray about 10.9 around
 ##the arithmetic mean of 10 => 0 and 20.9
 ##@end group
 ##@end example
-##@seealso{trustarea(), studentfactor(), mean(), std(), min(), max()}
+##@seealso{}
 ##@end deftypefn
 
-# Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
-# License: GPL 3.0
+## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+## License: GPL 3.0
 function retval = strayarea(v, p)
 
   % Check arguments
   if (nargin < 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(v) || ~isvector(v)); error("First argument has to be a numeric vector\n"); endif
-  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%"))
-    error("Second argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\" or \"99.9%\"");
+  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%") || p != 0.05 || ...
+        p != 0.01 || p != 0.001)
+    error("Second argument is the statistical confidence level and has to be a string, \
+as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
   endif
   
   % Number of values

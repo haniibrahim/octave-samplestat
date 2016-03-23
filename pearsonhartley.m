@@ -1,15 +1,29 @@
 ## -*- texinfo -*-
 ##
-##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}}] = pearsonhartley(@var{v}, @var{p})
+##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = pearsonhartley(@var{v}, @var{p})
 ##
-##"pearsonhartley" performs a Pearson-Hartley outliertest for more than 30 values.
-##
-##@var{v} is a vector of numerical values. The number of the values should be 
-##greater than 30. @var{p} is the statistical confidence level committed as a 
-##string ("95%" or "99%"). 95%: significant outlier, 99%: high significant outlier
+##"pearsonhartley" determine the significance thresholds of Pearson-Hartley
+##applied to a distributon of more than 30 values. It is used as an outlier test.
 ##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
-##contains the outlier value. 
+##contains the outlier value.
+##
+##@var{v} is a vector of numerical values. The number of the values should be 
+##greater than 30. 
+####@var{p} is the statistical confidence level (%) in a string or
+##the level of significance (alpha) as a decimal value.
+##
+##@example
+##@group
+##conf. level   level of signif.
+##------------------------------
+##  "95%"             0.05
+##  "99%"             0.01
+##@end group
+##@end example
+##
+##95%: significant outlier, 99%: high significant outlier
+##
 ##
 ##@example
 ##@group
@@ -20,8 +34,8 @@
 ##@seealso{deandixon(), grubbs()}
 ##@end deftypefn
 
-# Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
-# License: GPL 3.0
+## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+## License: GPL 3.0
 
 function [outlierfree, outlier] = pearsonhartley(v, p)
   % Checking arguments
@@ -32,13 +46,14 @@ function [outlierfree, outlier] = pearsonhartley(v, p)
   endif
   n = length(v);
   if (n < 30 || n > 1000)
-    error("Pearson-Hartley Outliertest is just applicable for sample \
-distributions greater than 30 and less than 1000 values. Use Dean-Dixon \
-outlier test \"deandixon()\" for less than 30 samples\n"); 
+    error("Pearson-Hartley is just applicable for sample \
+distributions greater than 30 and less than 1000 values. Use the Dean-Dixon \
+outlier test \"deandixon()\" or better the newer Dixon test \"dixon()\" for less \
+than 30 samples\n"); 
    endif
   
   % Determine Q_crit
-  qcritval = qcrit_ph(n, p);
+  qcritval = pearsonhartley_crit(n, p);
   
   S = std(v);
   X = mean(v);

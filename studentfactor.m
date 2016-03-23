@@ -7,7 +7,7 @@
 ##necessary.
 ##
 ##@var{n} is the number of values in the sample distribution, committed as an
-##integer. @var{p} is the statistical confidence level as percent in a string or
+##integer. @var{p} is the statistical confidence level (%) in a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example
@@ -23,6 +23,7 @@
 ##@var{retval} is a the student factor. 
 ##
 ##Example:
+##
 ##@example
 ##@group
 ##studentfactor(35, "95%")
@@ -35,8 +36,8 @@
 ##@seealso{}
 ##@end deftypefn
 
-# Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
-# License: GPL 3.0
+## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+## License: GPL 3.0
 
 function retval = studentfactor(n, p)
   
@@ -45,7 +46,7 @@ function retval = studentfactor(n, p)
   if (~isnumeric(n) || (n-floor(n) != 0))
     error("First argument is the number of values and has to be an integer"); 
   endif
-   if (n < 2 || n > 1000); error("First value has to be greater or equal 2 and less or equal 1000"); endif
+  if (n < 2 || n > 1000); error("First value has to be greater or equal 2 and less or equal 1000"); endif
   if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%") || p != 0.05 || ...
         p != 0.01 || p != 0.001)
     error("Second argument is the statistical confidence level and has to be a string, \

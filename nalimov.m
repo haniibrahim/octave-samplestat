@@ -5,23 +5,48 @@
 ##"nalimov" performs a Nalimov outlier test.
 ##
 ##@var{v} is a vector of numerical values. the number of the values should be
-##greater or equal than 3 and less or equal than 1000 values, @var{p} is the 
-##statistical confidence level committed as a string ("95%", "99%", "99.9%").
+##greater or equal than 3 and less or equal than 1000 values, @var{p} is the statistical confidence level (%) in a string or
+##the level of significance (alpha) as a decimal value.
+##
+##@example
+##@group
+##conf. level   level of signif.
+##------------------------------
+##  "95%"             0.05
+##  "99%"             0.01
+##  "99.9%"           0.001
+##@end group
+##@end example
+##
+##@var{n} has to be between: 3 <= @var{n} <= 1000. @var{p} is "95% or "99%" or "99.9%".
 ##
 ##95%: significant outlier, 99%: high significant outlier, 99.9%: highly 
 ##significant outlier
 ##
+##Example:
+##
 ##@example
 ##@group
+##data = [6 8 14 12 35 15];
+##[of, o] = nalimov(data, "95%")
+##@result{} of =  6    8   12   14   15
+##@result{} o =  35
 ##
+##[of, o] = nalimov(data, 0.05)
+##@result{} of =  6    8   12   14   15
+##@result{} o =  35
+##
+##The committed vector "@var{data}" is checked for outliers with a probability 
+##of 95%. The value 35 is a significant outlier. 
 ##@end group
 ##@end example
 ##
 ##@seealso{}
 ##@end deftypefn
 
-# Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
-# License: GPL 3.0
+## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+## License: GPL 3.0
+
 function [outlierfree, outlier] = nalimov(v, p)
   % Checking arguments
   if (nargin < 2 || nargin > 2); print_usage(); endif
@@ -36,7 +61,7 @@ function [outlierfree, outlier] = nalimov(v, p)
   endif
   
   % Determine Q_crit
-  qcritval = qcrit_na(n, p);
+  qcritval = nalimov_crit(n, p);
 
   x = mean(v); % mean
   sd = std(v); % standard deviation

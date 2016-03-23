@@ -1,10 +1,11 @@
 ## -*- texinfo -*-
 ##
-##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = deandixon(@var{v}, @var{p})
+##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = dixon(@var{v}, @var{p})
 ##
-##"deandixon" performs a Dean-Dixon outlier test based on R.B. Dean, W.J. Dixon,
-##"Simplified statistics for small numbers of observations", Anal.Chem. 23 
-##(1951) 636-638.
+##"dixon" performs a revisited Dixon outlier test refered to
+##Rorabacher, David B. (1991): "Statistical Treatment for Rejection of Deviant 
+##Values: Critical Values of Dixon's Q Parameter and Related Subrange Ratios 
+##at the 95% Confidence Level." Analytical Chemistry 63, no. 2 (1991): 139-146.
 ##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier value. 
@@ -17,15 +18,15 @@
 ##@group
 ##conf. level   level of signif.
 ##------------------------------
+##  "90%"             0.1
 ##  "95%"             0.05
 ##  "99%"             0.01
-##  "99.9%"           0.001
 ##@end group
 ##@end example
 ##
 ##
-##@var{n} has to be between: 3 <= @var{n} <= 30. @var{p} is "95%" (0.05), "99%" 
-##(0.01) or "99.9%" (0.001).
+##@var{n} has to be between: 3 <= @var{n} <= 30. @var{p} is "90%" (0.1), "95%" 
+##(0.05) or "99%" (0.01).
 ##
 ##Example:
 ##
@@ -45,20 +46,20 @@
 ##outlier. 
 ##@end group
 ##@end example
-##@seealso{pearsonhartley(), grubbs(), grubbs2(), nalimov()}
+##@seealso{}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
 ## License: GPL 3.0
 
-function [outlierfree, outlier] = deandixon(v, p)
+function [outlierfree, outlier] = dixon(v, p)
   % Checking arguments
   if (nargin < 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(v) || ~isvector(v)); error("First argument has to be a numeric vector\n"); endif
-  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%") || p != 0.05 || ...
-        p != 0.01 || p != 0.001)
+  if ~(strcmp(p,"90%") || strcmp(p,"95%") || strcmp(p,"99%") || p != 0.1 || ...
+        p != 0.05 || p != 0.01)
     error("Second argument is the statistical confidence level and has to be a string, \
-as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
+as \"90%\", \"95%\" or \"99%\" or as alpha value: 0.1, 0.05, 0.01");
   endif
   n = length(v);
   if (n < 3 || n > 30)
@@ -68,7 +69,7 @@ Pearson-Hartley test 'pearsonhartley()' instead.");
   endif
   
   % Determine Q_crit
-  qcritval = deandixon_crit(n, p);
+  qcritval = dixon_crit(n, p);
  
   % Calculate Q for the smallest value
   vasc = sort(v);

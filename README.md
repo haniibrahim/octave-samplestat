@@ -16,12 +16,12 @@ It contains the following functions:
 - Trust area (range of dispersion of the mean) - *trustarea.m*
 - Outliert tests
   - Dean-Dixon - *deandixon.m*
+  - Dixon - *dixon.m*
   - Pearson-Hartley - *pearsonhartley.m*
   - Grubbs - *grubbs.m*
   - Grubbs (2-sided) - *grubbs2.m*
   - Nalimov - *nalimov.m*
 - Test for normal distribution
-  - Chi-squared*
   - Shapiro-Wilk*
 
 *not implemented yet
@@ -38,32 +38,44 @@ e.g.:
 help deandixon
 ```
 ```
- -- Function File: [OUTLIERFREE, OUTLIER] = deandixon(V, P)
+ -- Function File: [ OUTLIERFREE , OUTLIER] = deandixon(V, P)
 
-     "deandixon" performs a Dean-Dixon outliertest based on R.B. Dean,
+     "deandixon" performs a Dean-Dixon outlier test based on R.B. Dean,
      W.J. Dixon, "Simplified statistics for small numbers of
      observations", Anal.Chem.  23 (1951) 636-638.
 
-     V is a vector of numerical values.  the number of the values should
-     be greater or equal than 3 and less or equal than 30 values, P is
-     the statistical confidence level committed as a string ("95%",
-     "99%" or "99.9%").
-
-     95%: significant outlier, 99%: high significant outlier, 99.9%:
-     highly significant outlier
-
      OUTLIERFREE contains a vector of outlier-free values, OUTLIER
      contains the outlier value.
+
+     N is the number of values in the sample distribution, committed as
+     an integer.  P is the statistical confidence level (%) in a string
+     or the level of significance (alpha) as a decimal value.
+
+          conf. level   level of signif.
+          ------------------------------
+            "95%"             0.05
+            "99%"             0.01
+            "99.9%"           0.001
+
+     N has to be between: 3 <= N <= 30.  P is "95%" (0.05), "99%" (0.01)
+     or "99.9%" (0.001).
+
+     Example:
 
           data = [6 8 14 12 35 15];
           [of, o] = deandixon(data, "95%")
           => of =  6    8   12   14   15
           => o =  35
 
-          In the committed vector DATA which contains less than 30 values is
-          checked for outliers with a confidence level of 95%. The value 35 is 
-          a significant outlier.
+          [of, o] = deandixon(data, 0.05)
+          => of =  6    8   12   14   15
+          => o =  35
 
+          In the committed vector DATA which contains less than 30 values is
+          checked for outliers with a confidence level of 95%. The value 35 is a significant
+          outlier.
+
+     See also: pearsonhartley(), grubbs(), grubbs2(), nalimov().
 
 Additional help for built-in functions and operators is
 available in the online version of the manual.  Use the command

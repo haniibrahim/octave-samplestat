@@ -1,46 +1,59 @@
 ## -*- texinfo -*-
 ##
-##@deftypefn {Function File} [@var{qcritval}] = qcrit_na(@var{n}, @var{p})
+##@deftypefn {Function File} [@var{critval}] = nalimov_crit(@var{n}, @var{p})
 ##
-##Returns the critical Q value (@var{qcritval}) for a committed number of values 
-##(@var{n}) of a sample distribution and a given confidence level (@var{p}) for 
-##the Nalimov outlier test.
+##Service function for "nalimov()" Nalimov outlier test.
+##Returns the critical Q value (@var{critval}). 
+##@var{n} is the number of values in the sample distribution, committed as an
+##integer. @var{p} is the statistical confidence level (%) in a string or
+##the level of significance (alpha) as a decimal value.
 ##
-##In the Nalimov outlier test you compare @var{qcritval} with a calculated 
-##Q value. 
+##@example
+##@group
+##conf. level   level of signif.
+##------------------------------
+##  "95%"             0.05
+##  "99%"             0.01
+##  "99.9%"           0.001
+##@end group
+##@end example
 ##
 ##@var{n} has to be between: 3 <= @var{n} <= 1000. @var{p} is "95% or "99%" or "99.9%".
 ##
 ##@example
 ##@group
 ##V = [6 8 14 12 5 15];
-##qcrit_na(length(V), "95%")
+##nalimov_crit(length(V), "95%")
 ##@result{} 1.870
 ##
-##The Q_crit value (@var{qcritval}) of @var{n}=6 and @var{p}="95%" is 1.870.
+##nalimov_crit(length(V), 0.05)
+##@result{} 1.870
+##
+##The Q_crit value (@var{critval}) of @var{n}=6 and @var{p}="95%" (0.05) is 1.870.
 ##@end group
 ##@end example
 ##
 ##@seealso{}
 ##@end deftypefn
 
-# Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
-# License: GPL 3.0
-function [qcritval] = qcrit_na(n, p)
+## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+## License: GPL 3.0
+function [critval] = nalimov_crit(n, p)
   % Checking arguments
   if (nargin < 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(n) || (n-floor(n) != 0)); error("First argument has to be a integer\n"); endif
   if (n <3 || n>1000); error("First value has to be greater or equal 3 and less or equal 1000"); endif
-  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%"))
-    error("Second argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\" or \"99.9%\"");
+  if ~(strcmp(p,"95%") || strcmp(p,"99%") || p != 0.05 || p != 0.01)
+    error("Second argument is the statistical confidence level and has to be a string, \
+as \"95%\", \"99%\" or as a alpha value: 0.05, 0.01");
   endif
 
-  % qtable contains the critical values qcritval for N (number of values)
+  % qtable contains the critical values critval for N (number of values)
   % and alpha (niveau of significance)  
   % Column 1 : Dregree of freedom (f = n-2)
-  % Column 2 : Q_crit, 95% confidence level
-  % Column 3 : Q_crit, 99% confidence level
-  % Column 4 : Q_crit, 99.9% confidence level
+  % Column 2 : Student factor, confidence level: 95%, level of significance = 0.05
+  % Column 3 : Student factor, confidence level: 99%, level of significance = 0.01
+  % Column 4 : Student factor, confidence level: 99.9%, level of significance = 0.001
   qtable = [ ...
     1	    1.409	1.414	1.414; ...
     2	    1.645	1.715	1.730; ...
@@ -87,6 +100,12 @@ function [qcritval] = qcrit_na(n, p)
       j = 3;
     case("99.9%")
       j = 4;
+    case(0.05)
+      j = 2;
+    case(0.01)
+      j = 3;
+    case(0.001)
+      j = 4;
     otherwise
       error();
   endswitch
@@ -96,30 +115,30 @@ function [qcritval] = qcrit_na(n, p)
   
   % Pick the appropriate Q_crit value, interpolate if necessary
   if (f >= 1 && f <= 20)
-    qcritval = qtable(f,j);
+    critval = qtable(f,j);
   elseif (f >= 21  && f <= 50)
     i = 16 + floor(f/5); % Determine row, 16=correction factor
     qs = (qtable(i+1,j) - qtable(i,j))/5;
     mul = f - qtable(i,1); % Multiplicator for qs
-    qcritval = qtable(i,j) + (mul * qs);
+    critval = qtable(i,j) + (mul * qs);
   elseif (f >= 51  && f <= 100)
     i = 25 + floor(f/50); % Determine row, 25=correction factor
     qs = (qtable(i+1,j) - qtable(i,j))/50;
     mul = f - qtable(i,1); % Multiplicator for qs
-    qcritval = qtable(i,j) + (mul * qs);
+    critval = qtable(i,j) + (mul * qs);
   elseif (f >= 101  && f <= 800)
     i = 26 + floor(f/100); % Determine row, 26=correction factor
     qs = (qtable(i+1,j) - qtable(i,j))/100;
     mul = f - qtable(i,1); % Multiplicator for qs
-    qcritval = qtable(i,j) + (mul * qs);
+    critval = qtable(i,j) + (mul * qs);
   elseif (f >= 801  && f < 1000)
     i = 30 + floor(f/200); % Determine row, 30=correction factor
     qs = (qtable(i+1,j) - qtable(i,j))/200;
     mul = f - qtable(i,1); % Multiplicator for qs
-    qcritval = qtable(i,j) + (mul * qs);
+    critval = qtable(i,j) + (mul * qs);
   else % for the last value (1000)
     i = 35; % Determine row, 6=correction factor
-    qcritval = qtable(i,j);
+    critval = qtable(i,j);
   endif
   return;
 endfunction

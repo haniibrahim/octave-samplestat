@@ -1,22 +1,38 @@
 ## -*- texinfo -*-
 ##
-##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}}] = grubbs(@var{v}, @var{p})
+##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = grubbs(@var{v}, @var{p})
 ##
 ##"grubbs" performs a common Grubbs outlier test.
 ##
 ##@var{v} is a vector of numerical values. the number of the values should be
-##greater or equal than 3 and less or equal than 600 values, @var{p} is the 
-##statistical confidence level committed as a string ("95%", "99%").
+##greater or equal than 3 and less or equal than 600 values, 
+##@var{p} is the statistical confidence level (%) in a string or
+##the level of significance (alpha) as a decimal value.
+##
+##@example
+##@group
+##conf. level   level of signif.
+##------------------------------
+##  "95%"             0.05
+##  "99%"             0.01
+##@end group
+##@end example
 ##
 ##95%: significant outlier, 99%: high significant outlier
 ##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier value. 
 ##
+##Example:
+##
 ##@example
 ##@group
 ##data = [6 8 14 12 35 15];
 ##[of, o] = grubbs(data, "95%")
+##@result{} of =  6    8   12   14   15
+##@result{} o =  35
+##
+##[of, o] = grubbs(data, 0.05)
 ##@result{} of =  6    8   12   14   15
 ##@result{} o =  35
 ##
@@ -33,8 +49,9 @@ function [outlierfree, outlier] = grubbs(v, p)
   % Checking arguments
   if (nargin < 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(v) || ~isvector(v)); error("First argument has to be a numeric vector\n"); endif
-  if ~(strcmp(p,"95%") || strcmp(p,"99%"))
-    error("Second argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\"");
+  if ~(strcmp(p,"95%") || strcmp(p,"99%") || p != 0.05 || p != 0.01)
+    error("Second argument is the statistical confidence level and has to be a string, \
+as \"95%\", \"99%\" or as a alpha value: 0.05, 0.01");
   endif
   n = length(v);
   if (n < 3 || n > 600)
@@ -43,7 +60,7 @@ function [outlierfree, outlier] = grubbs(v, p)
   endif
   
   % Determine Q_crit
-  gcritval = gcrit(n, p);
+  gcritval = grubbs_crit(n, p);
   
   % Make a vector vertical if necessary and set a flag
   if (columns(v) > 1)
