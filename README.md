@@ -14,7 +14,7 @@ It contains the following functions:
 
 - Stray area (range of dispersion of the values) - *strayarea.m*
 - Trust area (range of dispersion of the mean) - *trustarea.m*
-- Outliert tests
+- Outlier tests
   - Dean-Dixon - *deandixon.m*
   - Dixon - *dixon.m*
   - Pearson-Hartley - *pearsonhartley.m*
