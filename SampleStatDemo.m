@@ -1,12 +1,27 @@
-## SampleStatDemo is a demo script for the samplestat.m functions
+## Copyright (C) 2016 Hani Andreas Ibrahim
 ##
-## - strayarea.m
-## - trustarea.m
+## This program is free software; you can redistribute it and/or modify it under
+## the terms of the GNU General Public License as published by the Free Software
+## Foundation; either version 3 of the License, or (at your option) any later
+## version.
 ##
-## Core functions as mean(), std(), min() and max() are also used.
+## This program is distributed in the hope that it will be useful, but WITHOUT
+## ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+## FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+## details.
+##
+## You should have received a copy of the GNU General Public License along with
+## this program; if not, see <http://www.gnu.org/licenses/>.
 
-# Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
-# License: GPL 3.0
+% SampleStatDemo is a demo script for the samplestat.m functions
+%
+% - strayarea.m
+% - trustarea.m
+%
+% Core functions as mean(), std(), min() and max() are also used.
+
+% Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+% License: GPL 3.0
 
 % Sample data
 v = [ ...
