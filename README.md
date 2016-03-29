@@ -12,19 +12,18 @@ These functions are good to extend the built-in functions mean(), std(), max(), 
 
 It contains the following functions:
 
-- Stray area (range of dispersion of the values) - *strayarea.m*
-- Trust area (range of dispersion of the mean) - *trustarea.m*
+- Stray area (range of dispersion of the values) - *strayarea()*
+- Trust area (range of dispersion of the mean) - *trustarea()*
 - Outlier tests
-  - Dean-Dixon - *deandixon.m*
-  - Dixon - *dixon.m*
-  - Pearson-Hartley - *pearsonhartley.m*
-  - Grubbs - *grubbs.m*
-  - Grubbs (2-sided) - *grubbs2.m*
-  - Nalimov - *nalimov.m*
+  - Dean-Dixon - *deandixon()*
+  - Dixon - *dixon()*
+  - Pearson-Hartley - *pearsonhartley()*
+  - Grubbs - *grubbs()*
+  - Grubbs (2-sided) - *grubbs2()*
+  - Nalimov - *nalimov()*
 - Test for normal distribution
-  - Shapiro-Wilk*
+  - Shapiro-Wilk - *shapirowilk()*
 
-*not implemented yet
 
 ## Help
 
