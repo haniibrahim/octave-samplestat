@@ -18,7 +18,8 @@
 ##@deftypefn {Function File} [@var{critval}] = pearsonhartley_crit(@var{n}, @var{p})
 ##
 ##Service function for "pearsonhartley()" Pearson-Hartley test for significance.
-##Returns the critical Q value (@var{critval}). 
+##Returns the critical Q value (@var{critval}).
+## 
 ##@var{n} is the numbers of values. 
 ##@var{p} is the statistical confidence level (%) in a string or
 ##the level of significance (alpha) as a decimal value.
@@ -52,7 +53,7 @@
 ##@end group
 ##@end example
 ##
-##@seealso{pearsonhartley(), deandixon(), mean(), std(), min(), max()}
+##@seealso{deandixon(), dixon(), grubbs(), grubbs2(), pearsonhartley(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

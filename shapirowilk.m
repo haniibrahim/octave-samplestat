@@ -17,11 +17,10 @@
 ##
 ##@deftypefn {Function File} @var{normal} = shapirowilk(@var{v}, @var{p})
 ##
-##Servicefunction for shapirowilk().
-##Returns the critical W_alpha value (@var{critval}) for the Shapiro-Wilk test
-##for normal distribution.
+##Returns @var{normal} = 1 (true) if the sample distrubion @var{v} is normally
+##distributed with the committed confidence level @var{p}.
 ##
-##@var{n} is the numbers of values. 
+##@var{v} is numerical vector.
 ##@var{p} is the statistical confidence level (%) in a string or
 ##the level of significance (alpha) as a decimal value.
 ##

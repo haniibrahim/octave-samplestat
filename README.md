@@ -4,25 +4,24 @@ Octave package for statistics of normal distributed populations.
 
 This package is made for normal distributed, natural scientific (chemistry, physics) data in the first place. The tests are focused for distributions of less than 30 samples. 
 
-But they are some tests for bigger distributions, like Pearson-Hartley, Grubbs and Chi-squared test.
-
 These functions are good to extend the built-in functions mean(), std(), max(), min(), median() and the [statistics package](http://octave.sourceforge.net/statistics/index.html) maintained by Arno Onken at [Octave Forge](http://octave.sourceforge.net/index.html).
 
 ## Functions
 
-It contains the following functions:
+It contains the following user functions:
 
 - Stray area (range of dispersion of the values) - *strayarea()*
 - Trust area (range of dispersion of the mean) - *trustarea()*
 - Outlier tests
   - Dean-Dixon - *deandixon()*
-  - Dixon - *dixon()*
+  - Dixon (Revised by Rorabacher) - *dixon()*
   - Pearson-Hartley - *pearsonhartley()*
-  - Grubbs - *grubbs()*
-  - Grubbs (2-sided) - *grubbs2()*
+  - Grubbs (2-sided) - *grubbs()*
   - Nalimov - *nalimov()*
 - Test for normal distribution
   - Shapiro-Wilk - *shapirowilk()*
+
+Useful boxplot, probability plot and histogram functions are contained in the [statistics package](http://octave.sourceforge.net/statistics/index.html) on the Forge.
 
 
 ## Help
@@ -39,9 +38,8 @@ help deandixon
 ```
  -- Function File: [ OUTLIERFREE , OUTLIER] = deandixon(V, P)
 
-     "deandixon" performs a Dean-Dixon outlier test based on R.B. Dean,
-     W.J. Dixon, "Simplified statistics for small numbers of
-     observations", Anal.Chem.  23 (1951) 636-638.
+     "deandixon" performs a Dean-Dixon outlier test for less than 30
+     values.
 
      OUTLIERFREE contains a vector of outlier-free values, OUTLIER
      contains the outlier value.
@@ -74,7 +72,11 @@ help deandixon
           checked for outliers with a confidence level of 95%. The value 35 is a significant
           outlier.
 
-     See also: pearsonhartley(), grubbs(), grubbs2(), nalimov().
+     Based on R.B. Dean, W.J. Dixon, "Simplified statistics for small
+     numbers of observations", Anal.Chem. 23 (1951) 636-638.
+
+     See also: dixon(), grubbs(), pearsonhartley(), nalimov(),
+     shapirowilk().
 
 Additional help for built-in functions and operators is
 available in the online version of the manual.  Use the command

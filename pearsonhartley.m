@@ -17,7 +17,7 @@
 ##
 ##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = pearsonhartley(@var{v}, @var{p})
 ##
-##"pearsonhartley" determine the significance thresholds of Pearson-Hartley
+##"pearsonhartley()" determine the significance thresholds of Pearson-Hartley
 ##applied to a distributon of more than 30 values. It is used as an outlier test.
 ##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
@@ -37,16 +37,13 @@
 ##@end group
 ##@end example
 ##
-##95%: significant outlier, 99%: high significant outlier
-##
-##
 ##@example
 ##@group
 ##[of, o] = pearsonhartley(data, "95%")
 ##
 ##@end group
 ##@end example
-##@seealso{deandixon(), grubbs()}
+##@seealso{deandixon(), dixon(), grubbs(), grubbs2(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

@@ -17,9 +17,7 @@
 ##
 ##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = deandixon(@var{v}, @var{p})
 ##
-##"deandixon" performs a Dean-Dixon outlier test based on R.B. Dean, W.J. Dixon,
-##"Simplified statistics for small numbers of observations", Anal.Chem. 23 
-##(1951) 636-638.
+##"deandixon" performs a Dean-Dixon outlier test for less than 30 values.
 ##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier value. 
@@ -60,7 +58,11 @@
 ##outlier. 
 ##@end group
 ##@end example
-##@seealso{pearsonhartley(), grubbs(), grubbs2(), nalimov()}
+##
+##Based on R.B. Dean, W.J. Dixon,
+##"Simplified statistics for small numbers of observations", Anal.Chem. 23 
+##(1951) 636-638.
+##@seealso{dixon(), grubbs(), pearsonhartley(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

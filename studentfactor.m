@@ -48,7 +48,10 @@
 ##@result{} 2.0324
 ##@end group
 ##@end example
-##@seealso{}
+##
+##Based on the German book R. Kaiser, G. Gottschalk; "Elementare Tests zur 
+##Beurteilung von Meßdaten", BI Hochschultaschenbücher, Bd. 774, Mannheim 1972.
+##@seealso{strayarea(), trustarea()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

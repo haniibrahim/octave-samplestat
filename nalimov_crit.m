@@ -19,6 +19,7 @@
 ##
 ##Service function for "nalimov()" Nalimov outlier test.
 ##Returns the critical Q value (@var{critval}). 
+##
 ##@var{n} is the number of values in the sample distribution, committed as an
 ##integer. @var{p} is the statistical confidence level (%) in a string or
 ##the level of significance (alpha) as a decimal value.
@@ -48,7 +49,7 @@
 ##@end group
 ##@end example
 ##
-##@seealso{}
+##@seealso{deandixon(), dixon(), grubbs(), pearsonhartley(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

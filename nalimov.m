@@ -17,7 +17,7 @@
 ##
 ##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = nalimov(@var{n}, @var{p})
 ##
-##"nalimov" performs a Nalimov outlier test.
+##"nalimov()" performs a Nalimov outlier test.
 ##
 ##@var{v} is a vector of numerical values. the number of the values should be
 ##greater or equal than 3 and less or equal than 1000 values, @var{p} is the statistical confidence level (%) in a string or
@@ -56,7 +56,7 @@
 ##@end group
 ##@end example
 ##
-##@seealso{}
+##@seealso{deandixon(), dixon(), grubbs(), pearsonhartley(), shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

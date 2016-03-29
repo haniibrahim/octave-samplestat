@@ -17,7 +17,7 @@
 ##
 ##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = grubbs(@var{v}, @var{p})
 ##
-##"grubbs" performs a common Grubbs outlier test.
+##"grubbs()" performs a Grubbs outlier test (2-sided).
 ##
 ##@var{v} is a vector of numerical values. the number of the values should be
 ##greater or equal than 3 and less or equal than 600 values, 
@@ -55,7 +55,10 @@
 ##of 95%. The value 35 is a significant outlier. 
 ##@end group
 ##@end example
-##@seealso{pearsonhartley(), mean(), std(), min(), max()}
+##
+##Based on F. Grubbs,	"Procedures for Detecting Outlying Observations in Samples",
+##Technometrics, Vol. 11 (1969) 1-21. 
+##@seealso{deandixon(), dixon(), pearsonhartley(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 # Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

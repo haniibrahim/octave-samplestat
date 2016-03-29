@@ -18,8 +18,8 @@
 ##@deftypefn {Function File} @var{alpha} = shapirowilk_a(@var{i}, @var{n})
 ##
 ##Servicefunction for shapirowilk():
-##Pick the a-coefficient for the committed number of values @var{n} and the
-##i-value from the internal a-table for The W test for normality.
+##Pick the alpha-coefficient for the committed number of values @var{n} and the
+##index (i-value) from the internal alpha-table for The W test for normality.
 ##
 ##@var{i} is the index (i-value) comitted as an integer. @var{n} is the number 
 ##of values in the sample distribution, committed as aninteger.
@@ -38,7 +38,7 @@
 ##Based on Shapiro, Wilk: "An Analysis of Variance Test for Normality", 
 ##Biometrika, Vol. 52, No. 3/4. (Dec., 1965), pp. 591-611.
 ##
-##@seealso{}
+##@seealso{shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

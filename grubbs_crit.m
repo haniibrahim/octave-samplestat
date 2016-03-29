@@ -18,7 +18,7 @@
 ##@deftypefn {Function File} @var{critval} = grubbs_crit(@var{n}, @var{p})
 ##
 ##Servicefunction for grubbs().
-##Returns the critical G value (@var{critval}) for the Grubbs outlier test.
+##Returns the critical G value (@var{critval}) for the Grubbs outlier test (2-sided).
 ## 
 ##(@var{n}) is the numbers of values. 
 ##@var{p} is the statistical confidence level (%) in a string or
@@ -54,6 +54,9 @@
 ##@end group
 ##@end example
 ##
+##Based on F. Grubbs,	"Procedures for Detecting Outlying Observations in Samples",
+##Technometrics, Vol. 11 (1969) 1-21. 
+##@seealso{deandixon(), dixon(), grubbs(), pearsonhartley(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

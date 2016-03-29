@@ -17,10 +17,7 @@
 ##
 ##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = dixon(@var{v}, @var{p})
 ##
-##"dixon" performs a revisited Dixon outlier test refered to
-##Rorabacher, David B. (1991): "Statistical Treatment for Rejection of Deviant 
-##Values: Critical Values of Dixon's Q Parameter and Related Subrange Ratios 
-##at the 95% Confidence Level." Analytical Chemistry 63, no. 2 (1991): 139-146.
+##"dixon()" performs Rorabacher's revisited (1991) Dixon outlier test for less than 30 values.
 ##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier value. 
@@ -61,7 +58,12 @@
 ##outlier. 
 ##@end group
 ##@end example
-##@seealso{}
+##
+##Based on Rorabacher, David B. (1991) "Statistical Treatment for Rejection of Deviant 
+##Values: Critical Values of Dixon's Q Parameter and Related Subrange Ratios 
+##at the 95% Confidence Level." Analytical Chemistry 63, no. 2 (1991): 139-146.
+##
+##@seealso{deandixon(), grubbs(), pearsonhartley(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

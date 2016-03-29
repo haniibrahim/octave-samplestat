@@ -17,8 +17,8 @@
 ##
 ##@deftypefn {Function File} [@var{critval}] = deandixon_crit(@var{n}, @var{p})
 ##
-##Service function for "deandixon()", Dean-Dixon outlier test refered to 
-##W.J. Dixon: "Analysis of extreme values",Ann. Math. Stat. 21 (1950) 488-506.
+##Service function for "deandixon()" Dean-Dixon outlier test.
+## 
 ##Returns the critical Q value (@var{critval}).
 ##
 ##@var{n} is the number of values in the sample distribution, committed as an
@@ -54,7 +54,10 @@
 ##@end group
 ##@end example
 ##
-##@seealso{}
+##Based on R.B. Dean, W.J. Dixon,
+##"Simplified statistics for small numbers of observations", Anal.Chem. 23 
+##(1951) 636-638.
+##@seealso{deandixon(), dixon(), grubbs(), pearsonhartley(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 # Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

@@ -35,10 +35,7 @@
 ##@end group
 ##@end example
 ##
-##In the Grubbs outlier test you compare @var{critval} with a calculated 
-##G value.
-##
-##@var{n} has to be between: 3 <= @var{n} <= 600. @var{p} is "90%", "95%, "99%", 
+##@var{n} has to be between: 3 <= @var{n} <= 50. @var{p} is "90%", "95%, "99%", 
 ##0.10, 0.05 or 0.01.
 ##
 ##Example:
@@ -59,6 +56,7 @@
 ##Based on Shapiro, Wilk: "An Analysis of Variance Test for Normality", 
 ##Biometrika, Vol. 52, No. 3/4. (Dec., 1965), pp. 591-611.
 ##
+##@seealso{shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>

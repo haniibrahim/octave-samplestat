@@ -17,10 +17,7 @@
 ##
 ##@deftypefn {Function File} [@var{qcritval}] = dixon_crit(@var{n}, @var{p})
 ##
-##Service function for "dixon()", Dixon outlier test refered to 
-##Rorabacher, David B. (1991) "Statistical Treatment for Rejection of Deviant 
-##Values: Critical Values of Dixon's Q Parameter and Related Subrange Ratios 
-##at the 95% Confidence Level." Analytical Chemistry 63, no. 2 (1991): 139-146.
+##Service function for "dixon()" Dixon outlier test.
 ##
 ##Returns the critical Q value (@var{critval}).
 ##
@@ -57,7 +54,10 @@
 ##@end group
 ##@end example
 ##
-##@seealso{}
+##Based on Rorabacher, David B. (1991) "Statistical Treatment for Rejection of Deviant 
+##Values: Critical Values of Dixon's Q Parameter and Related Subrange Ratios 
+##at the 95% Confidence Level." Analytical Chemistry 63, no. 2 (1991): 139-146.
+##@seealso{deandixon(), dixon(), grubbs(), pearsonhartley(), nalimov(), shapirowilk()}
 ##@end deftypefn
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
