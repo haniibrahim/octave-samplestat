@@ -50,7 +50,7 @@
 ##shapirowilk(V, 0.05)
 ##@result{} 1
 ##
-##The sample distribution V is normally distributed.
+##The sample distribution V is normally distributed with a confidence of 95%.
 ##@end group
 ##@end example
 ##
@@ -87,7 +87,7 @@ greater than 3 and lesser than 50 values.");
   
   % Calulate b for even or odd n
   b = 0;
-  if rem(n,2)
+  if ~rem(n,2)
     % Calculate for even-n => b = SUM a_n-i+1 (v_n-i+1 - v_i) from i=1 to i=n/2
     for i=1:(n/2)
       b = b + shapirowilk_a(i,n) * (v(n-i+1) - v(i));
