@@ -20,9 +20,20 @@ It contains the following user functions:
   - Nalimov - *nalimov()*
 - Test for normal distribution
   - Shapiro-Wilk - *shapirowilk()*
+- Graphs
+  - Boxplot (for single data set) - *sboxplot()*
+    Wrapper of `boxplot` from the [statistics package](http://octave.sourceforge.net/statistics/index.html). You need this package installed to run `sboxplot`. Optimized for single datasets (which is not the strength of the original function) and with handy automatic tick labeling. Draws vertical and horizontal boxplots.
 
-Useful boxplot, probability plot and histogram functions are contained in the [statistics package](http://octave.sourceforge.net/statistics/index.html) on the Forge.
+Useful probability plot and histogram functions are contained in the [statistics package](http://octave.sourceforge.net/statistics/index.html) on the Forge.
 
+##Boxplot
+    
+```
+data = randn(10,1)*5+140;
+sboxplot(data);
+print -dpng boxplot.png;
+```
+![Boxplot (sboxplot())](http://blog.hani-ibrahim.de/wp-content/uploads/boxplot_small.png)
 
 ## Help
 

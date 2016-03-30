@@ -109,7 +109,7 @@ as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
     case(0.001)
       j = 4;
     otherwise
-      error();
+      error("Wrong confidence level");
   endswitch
   
   % Pick the appropriate Q_crit value, interpolate if necessary

@@ -59,9 +59,10 @@ function [critval] = nalimov_crit(n, p)
   if (nargin < 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(n) || (n-floor(n) != 0)); error("First argument has to be a integer\n"); endif
   if (n <3 || n>1000); error("First value has to be greater or equal 3 and less or equal 1000"); endif
-  if ~(strcmp(p,"95%") || strcmp(p,"99%") || p != 0.05 || p != 0.01)
+  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%") || p != 0.05 || ...
+        p != 0.01 || p != 0.001)
     error("Second argument is the statistical confidence level and has to be a string, \
-as \"95%\", \"99%\" or as a alpha value: 0.05, 0.01");
+as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
   endif
 
   % qtable contains the critical values critval for N (number of values)
@@ -123,7 +124,7 @@ as \"95%\", \"99%\" or as a alpha value: 0.05, 0.01");
     case(0.001)
       j = 4;
     otherwise
-      error();
+      error("Wrong confidence level");
   endswitch
   
   % degree of freedom

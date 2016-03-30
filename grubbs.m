@@ -33,8 +33,6 @@
 ##@end group
 ##@end example
 ##
-##95%: significant outlier, 99%: high significant outlier
-##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier value. 
 ##

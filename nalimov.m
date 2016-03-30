@@ -66,8 +66,10 @@ function [outlierfree, outlier] = nalimov(v, p)
   % Checking arguments
   if (nargin < 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(v) || ~isvector(v)); error("First argument has to be a numeric vector\n"); endif
-  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%"))
-    error("Second argument is the statistical confidence level and has to be a string, as \"95%\", \"99%\", \"99.9\"");
+  if ~(strcmp(p,"95%") || strcmp(p,"99%") || strcmp(p,"99.9%") || p != 0.05 || ...
+        p != 0.01 || p != 0.001)
+    error("Second argument is the statistical confidence level and has to be a string, \
+as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
   endif
   n = length(v);
   if (n < 3 || n > 600)

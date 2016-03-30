@@ -126,7 +126,7 @@ as \"95%\", \"99%\" or as a alpha value: 0.05, 0.01");
     case(0.01)
       j = 3;
     otherwise
-      error();
+      error("Wrong confidence level");
   endswitch
   
   % Pick the appropriate G_crit value, interpolate if necessary
