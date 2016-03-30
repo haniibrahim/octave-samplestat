@@ -1,0 +1,12 @@
+toolbox >> samplestat
+Category Mean
+ strayarea trustarea
+Category Outliers
+ deandixon dixon grubbs nalimov
+ pearsonhartley
+Category Normality
+ shapirowilk
+Category Graph
+ sboxplot
+Category Demo
+	SampleStatDemo

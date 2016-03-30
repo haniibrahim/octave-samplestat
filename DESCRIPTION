@@ -1,0 +1,15 @@
+Name: samplestat
+Version: 1.0.0
+Date: 2016-03-30
+Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+Maintainer: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
+Title: Statistics for sample distributions
+Description: samplestat is a statistic package for small sample 
+ distributions. It is focused on distributions up to 30 values 
+ but some function can be used for bigger distributions. It 
+ contains functions regarding evaluatiing of the raw values 
+ and the mean, outlier tests, test for normality and a boxplot.
+ It is designed to extend the "statistics" package.
+License: GPLv3+
+Depends: octave (>=3.6.1), statistics (>=1.2.4)
+Autoload: No
