@@ -1,4 +1,4 @@
-# samplestat - Octave package for sample statistics
+# samplestat - Octave statistic package for sample distributions
 
 Octave package for statistics of normal distributed populations.
 
@@ -23,6 +23,8 @@ It contains the following user functions:
 - Graphs
   - Boxplot (for single data set) - *sboxplot()*
     Wrapper of `boxplot` from the [statistics package](http://octave.sourceforge.net/statistics/index.html). You need this package installed to run `sboxplot`. Optimized for single datasets (which is not the strength of the original function) and with handy automatic tick labeling. Draws vertical and horizontal boxplots.
+- Demo scripts
+  - Demo for mean evaluation via "strayarea()" and "trustarea()" - *SampleStatDemo*
 
 Useful probability plot and histogram functions are contained in the [statistics package](http://octave.sourceforge.net/statistics/index.html) on the Forge.
 
@@ -35,16 +37,25 @@ print -dpng boxplot.png;
 ```
 ![Boxplot (sboxplot())](http://blog.hani-ibrahim.de/wp-content/uploads/boxplot_small.png)
 
+## Installation
+
+You have two opportunities:
+
+1. Copy all m-files in a arbitrary directory, e.g. `~/octave/samplestat` and add the path in one of Octave's startup files, e.g. `~/.octaverc`, by appending `addpath('~/octave/samplepath');` to this file, or
+2. Download the package file `samplestat-1.0.0.tar.gz` from the "package" folder and then start Octave and type in Octave's prompt: `pkg install /path/to/samplestat-1.0.0.tar.gz` and then `pkg load samplestat`.
+
+`~`stands for your home directory (Unix) and your profile directory (Windows) respectivly.
+
 ## Help
 
 For help just type in Octave:
 
 ```
-help <function-name>
+>> help <function-name>
 ```
 e.g.:
 ```
-help deandixon
+>> help deandixon
 ```
 ```
  -- Function File: [ OUTLIERFREE , OUTLIER] = deandixon(V, P)
@@ -93,6 +104,37 @@ available in the online version of the manual.  Use the command
 Help and information about Octave is also available on the WWW
 at http://www.octave.org and via the help@octave.org
 mailing list.
+```
+
+## Demoscript for mean evaluation
+
+This demo make use of the functions `strayarea()` (range of dispersion of the values) and `trustarea()` (range of dispersion of the mean). 
+
+```
+>> SampleStatDemo
+```
+
+```
+SampleStatDemo - Demo script 'Statistics for Sampling Distributions'
+
+Values:
+    9.9990
+    9.9980
+   10.0020
+   10.0000
+   10.0010
+   10.0000
+
+Number of Values            : 6
+Arithmetic Mean             : 10
+Standard Deviation (S.D.)   : 0.00141421
+Confidence Level            : 95%
+Range of Dispersion (values): 0.00363453
+Range of Dispersion (mean)  : 0.00148379
+Minimum                     : 9.998
+Maximum                     : 10.002
+
+68 percent of the values will stray arount 10 +- 0.00141421 (S.D.). 95% of the values will be expected around 10 +/- 0.00363453 (Range of disp. of the values, stray area). With a propability of 95% the mean of 10 will stray around 10 +/- 0.00148379 (Rage of dispersion of the mean, trust area).
 ```
 
 ## License
