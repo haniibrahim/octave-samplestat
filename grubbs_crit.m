@@ -21,7 +21,7 @@
 ##Returns the critical G value (@var{critval}) for the Grubbs outlier test (2-sided).
 ## 
 ##(@var{n}) is the numbers of values. 
-##@var{p} is the statistical confidence level (%) in a string or
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example

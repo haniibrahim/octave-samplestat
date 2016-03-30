@@ -22,8 +22,9 @@
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier value. 
 ##
-##@var{n} is the number of values in the sample distribution, committed as an
-##integer. @var{p} is the statistical confidence level (%) in a string or
+##@var{v} is a vector of numerical values. The number of the values should be
+##greater or equal than 3 and less or equal than 30 values. 
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example
@@ -35,10 +36,6 @@
 ##  "99%"             0.01
 ##@end group
 ##@end example
-##
-##
-##@var{n} has to be between: 3 <= @var{n} <= 30. @var{p} is "90%" (0.1), "95%" 
-##(0.05) or "99%" (0.01).
 ##
 ##Example:
 ##
@@ -54,8 +51,8 @@
 ##@result{} o =  35
 ##
 ##In the committed vector @var{data} which contains less than 30 values is 
-##checked for outliers with a confidence level of 95%. The value 35 is a significant 
-##outlier. 
+##checked for outliers with a confidence level of 95%. The value 35 is a 
+##significant outlier. 
 ##@end group
 ##@end example
 ##

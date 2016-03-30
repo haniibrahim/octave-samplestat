@@ -15,16 +15,18 @@
 
 ## -*- texinfo -*-
 ##
-##@deftypefn {Function File} @var{retval} = trustarea(@var{v}, @var{p})
+##@deftypefn {Function File} @var{trustval} = trustarea(@var{v}, @var{p})
 ##
-##"trustarea" @var{retval} is the range of dispersion of the mean. This 
-##parameter tells how secure the mean is. It indicates the stray area of the 
+##"trustarea" determine the range of dispersion of the mean. It describes the
+##quality of the mean and indicates the range of dispersion of the 
 ##mean and not of the raw values as the stray area does.
 ##
-##The trust area @var{retval} indicates that the mean of the values in vector 
-##@var{v} strays around +/-@var{retval} with the specified probability.
+##E.g. if @var{trustval} = 1.4 at @var{p} = 95% with a mean = 10,0 the mean for
+##the whole population will stray with a confidence of 95% at about 10.0 +/- 1.4.
 ##
-##@var{p} is the statistical confidence level (%) in a string or
+##@var{trustval} is the trust area (range of dispersion of the mean).
+## 
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example
@@ -50,10 +52,15 @@
 ##trustarea(V, 0.05)
 ##@result{} 4.4514
 ##
-##With a probability of 95% the arithmetic mean of 10 will stray 
+##With a confidence of 95% the arithmetic mean of 10 will stray 
 ##around 4.5 => 10 +/- 4.5
 ##@end group
 ##@end example
+##
+##The trustarea is the result of the division of the strayarea with the squareroot 
+##of the numbers of values: strayarea / sqrt(n).
+##The strayarea is calculated as s * t. (t = student factor, dependent on the 
+##confidence level P% = 95%, etc. and the degree of freedom f = n - 1.
 ##
 ##Based on the German book R. Kaiser, G. Gottschalk; "Elementare Tests zur 
 ##Beurteilung von Meßdaten", BI Hochschultaschenbücher, Bd. 774, Mannheim 1972.
@@ -62,7 +69,7 @@
 
 # Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
 # License: GPL 3.0
-function retval = trustarea(v, p)
+function trustval = trustarea(v, p)
   % Check arguments
   if (nargin < 2 || nargin > 2); print_usage(); endif
   if (~isnumeric(v) || ~isvector(v)); error("First argument has to be a numeric vector\n"); endif
@@ -73,9 +80,9 @@ as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
   endif
   n = length(v); % Number of values
   if (strayarea(v,p) < 0)
-    retval = -1.0;
+    error("Wrong studenfactor 't' was committed. Here is something serously wrong!");
   else
-   retval = strayarea(v,p)/sqrt(n);
+   trustval = strayarea(v,p)/sqrt(n);
   endif
   return;
 endfunction

@@ -17,13 +17,14 @@
 ##
 ##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = deandixon(@var{v}, @var{p})
 ##
-##"deandixon" performs a Dean-Dixon outlier test for less than 30 values.
+##"deandixon()" performs a Dean-Dixon outlier test for less than 30 values.
 ##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier value. 
 ##
-##@var{n} is the number of values in the sample distribution, committed as an
-##integer. @var{p} is the statistical confidence level (%) in a string or
+##@var{v} is a vector of numerical values. The number of the values should be
+##greater or equal than 3 and less or equal than 30 values. 
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example
@@ -35,10 +36,6 @@
 ##  "99.9%"           0.001
 ##@end group
 ##@end example
-##
-##
-##@var{n} has to be between: 3 <= @var{n} <= 30. @var{p} is "95%" (0.05), "99%" 
-##(0.01) or "99.9%" (0.001).
 ##
 ##Example:
 ##
@@ -53,9 +50,8 @@
 ##@result{} of =  6    8   12   14   15
 ##@result{} o =  35
 ##
-##In the committed vector @var{data} which contains less than 30 values is 
-##checked for outliers with a confidence level of 95%. The value 35 is a significant 
-##outlier. 
+##In the committed vector @var{data} is checked for outliers with a confidence 
+##level of 95%. The value 35 is a significant outlier. 
 ##@end group
 ##@end example
 ##

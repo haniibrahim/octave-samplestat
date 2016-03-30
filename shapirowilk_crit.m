@@ -22,7 +22,7 @@
 ##for normal distribution.
 ##
 ##@var{n} is the numbers of values. 
-##@var{p} is the statistical confidence level (%) in a string or
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example

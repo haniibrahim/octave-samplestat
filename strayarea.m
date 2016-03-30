@@ -15,18 +15,20 @@
 
 ## -*- texinfo -*-
 ##
-##@deftypefn {Function File} @var{retval} = strayarea(@var{v}, @var{p})
+##@deftypefn {Function File} @var{strayval} = strayarea(@var{v}, @var{p})
 ##
-##"strayarea" @var{retval} is the range of dispersion of the values and is 
-##calculated as s * t. (t = student factor, dependent on the confidence level P% =
-##95%, 99% or 99.9% and the degree of freedom f = n - 1. f and t are specified 
-##in the t-table. s = standard deviation). 
+##"strayarea" determines the range of dispersion of the values. It describes the
+##quality of the raw values.
 ##
-##The strayarea @var{retval} indicates that P% of all single values are expected
-##around mean + @var{retval} and mean - @var{retval}. the strayarea is the 
-##parameter which specify the quality of the raw values.
+##E.g. if @var{strayval} = 1.4 at @var{p} = 95% with a mean = 10,0 all raw 
+##values of the whole population will be expected with a confidence of 95% at 
+##about 10.0 +/- 1.4.
 ##
-##@var{v} is a vector of numerical values, @var{p} is the statistical confidence level (%) in a string or
+##The strayarea @var{strayval} indicates that P% of all single values are expected
+##around mean + @var{strayval} and mean - @var{strayval}.
+##
+##@var{v} is a vector of numerical values, 
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example
@@ -52,10 +54,13 @@
 ##strayarea(V, 0.05)
 ##@result{} 10.904
 ##
-##In the given vector "@var{v}" 95% of all values will stray about 10.9 around
-##the arithmetic mean of 10 => 0 and 20.9
+##In the committed vector "@var{v}" 95% of all values will stray about 10.9 
+##around the arithmetic mean of 10 => 0 and 20.9
 ##@end group
 ##@end example
+##
+##The strayarea is calculated as s * t. (t = student factor, dependent on the 
+##confidence level P% = 95%, 99% or 99.9% and the degree of freedom f = n - 1.
 ##
 ##Based on the German book R. Kaiser, G. Gottschalk; "Elementare Tests zur 
 ##Beurteilung von Meßdaten", BI Hochschultaschenbücher, Bd. 774, Mannheim 1972.
@@ -64,7 +69,7 @@
 
 ## Author: Hani Andreas Ibrahim <hani.ibrahim@gmx.de>
 ## License: GPL 3.0
-function retval = strayarea(v, p)
+function strayval = strayarea(v, p)
 
   % Check arguments
   if (nargin < 2 || nargin > 2); print_usage(); endif
@@ -79,11 +84,11 @@ as \"95%\", \"99%\" or \"99.9%\" or as alpha value: 0.05, 0.01, 0.001");
   n = length(v);
 
   if studentfactor(n, p) < 0
-    retval = -1.0;
+    error("Wrong studenfactor 't' was committed. Here is something serously wrong!");
     return;
   endif
   
-  retval = std(v) * studentfactor(n, p);
+  strayval = std(v) * studentfactor(n, p);
   return; 
 
 endfunction

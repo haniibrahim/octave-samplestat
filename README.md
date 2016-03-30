@@ -49,24 +49,22 @@ help deandixon
 ```
  -- Function File: [ OUTLIERFREE , OUTLIER] = deandixon(V, P)
 
-     "deandixon" performs a Dean-Dixon outlier test for less than 30
+     "deandixon()" performs a Dean-Dixon outlier test for less than 30
      values.
 
      OUTLIERFREE contains a vector of outlier-free values, OUTLIER
      contains the outlier value.
 
-     N is the number of values in the sample distribution, committed as
-     an integer.  P is the statistical confidence level (%) in a string
-     or the level of significance (alpha) as a decimal value.
+     V is a vector of numerical values. The number of the values should
+     be greater or equal than 3 and less or equal than 30 values. P is
+     the statistical confidence level (%) as a string or the level of
+     significance (alpha) as a decimal value.
 
           conf. level   level of signif.
           ------------------------------
             "95%"             0.05
             "99%"             0.01
             "99.9%"           0.001
-
-     N has to be between: 3 <= N <= 30.  P is "95%" (0.05), "99%" (0.01)
-     or "99.9%" (0.001).
 
      Example:
 
@@ -79,12 +77,11 @@ help deandixon
           => of =  6    8   12   14   15
           => o =  35
 
-          In the committed vector DATA which contains less than 30 values is
-          checked for outliers with a confidence level of 95%. The value 35 is a significant
-          outlier.
+          In the committed vector DATA is checked for outliers with a confidence
+          level of 95%. The value 35 is a significant outlier.
 
      Based on R.B. Dean, W.J. Dixon, "Simplified statistics for small
-     numbers of observations", Anal.Chem. 23 (1951) 636-638.
+     numbers of observations", Anal.Chem.  23 (1951) 636-638.
 
      See also: dixon(), grubbs(), pearsonhartley(), nalimov(),
      shapirowilk().

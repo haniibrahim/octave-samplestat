@@ -17,10 +17,15 @@
 ##
 ##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = nalimov(@var{n}, @var{p})
 ##
-##"nalimov()" performs a Nalimov outlier test.
+##"nalimov()" performs a Nalimov outlier test. IMPORTANT: Do use nalimov() with
+##care. It indicates outliers very strict and is controversial discussed.
 ##
-##@var{v} is a vector of numerical values. the number of the values should be
-##greater or equal than 3 and less or equal than 1000 values, @var{p} is the statistical confidence level (%) in a string or
+##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
+##contains the outlier values. 
+##
+##@var{v} is a vector of numerical values. The number of the values should be
+##greater or equal than 3 and less or equal than 1000 values.  
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example
@@ -32,11 +37,6 @@
 ##  "99.9%"           0.001
 ##@end group
 ##@end example
-##
-##@var{n} has to be between: 3 <= @var{n} <= 1000. @var{p} is "95% or "99%" or "99.9%".
-##
-##95%: significant outlier, 99%: high significant outlier, 99.9%: highly 
-##significant outlier
 ##
 ##Example:
 ##
@@ -51,7 +51,7 @@
 ##@result{} of =  6    8   12   14   15
 ##@result{} o =  35
 ##
-##The committed vector "@var{data}" is checked for outliers with a probability 
+##The committed vector "@var{data}" is checked for outliers with a confidence 
 ##of 95%. The value 35 is a significant outlier. 
 ##@end group
 ##@end example

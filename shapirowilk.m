@@ -20,8 +20,9 @@
 ##Returns @var{normal} = 1 (true) if the sample distrubion @var{v} is normally
 ##distributed with the committed confidence level @var{p}.
 ##
-##@var{v} is numerical vector.
-##@var{p} is the statistical confidence level (%) in a string or
+##@var{v} is a vector of numerical values. The number of the values should be
+##greater or equal than 3 and less or equal than 50 values. 
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example
@@ -33,10 +34,6 @@
 ##  "99%"             0.01
 ##@end group
 ##@end example
-##
-##
-##@var{v} has to contain >= 3 or <= 50 values. @var{p} is "90%", "95%, "99%" or
-##0.10, 0.05, 0.01.
 ##
 ##Example:
 ##

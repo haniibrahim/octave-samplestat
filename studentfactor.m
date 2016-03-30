@@ -18,11 +18,11 @@
 ##@deftypefn {Function File} @var{retval} = studentfactor(@var{n}, @var{p})
 ##
 ##Servicefunction for strayarea() and trustarea():
-##Determine the student factor from the internal t-table and interpolate the value if
-##necessary.
+##Determine the student factor from the internal t-table and interpolate the 
+##value if necessary.
 ##
 ##@var{n} is the number of values in the sample distribution, committed as an
-##integer. @var{p} is the statistical confidence level (%) in a string or
+##integer. @var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example

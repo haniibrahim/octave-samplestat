@@ -24,8 +24,8 @@
 ##contains the outlier value.
 ##
 ##@var{v} is a vector of numerical values. The number of the values should be 
-##greater than 30. 
-####@var{p} is the statistical confidence level (%) in a string or
+##greater than 30 and less than 1,000. 
+##@var{p} is the statistical confidence level (%) as a string or
 ##the level of significance (alpha) as a decimal value.
 ##
 ##@example
@@ -39,8 +39,17 @@
 ##
 ##@example
 ##@group
+##data = [6 8 14 12 35 15];
 ##[of, o] = pearsonhartley(data, "95%")
+##@result{} of =  6    8   12   14   15
+##@result{} o =  35
 ##
+##[of, o] = pearsonhartley(data, 0.05)
+##@result{} of =  6    8   12   14   15
+##@result{} o =  35
+##
+##The committed vector "@var{data}" is checked for outliers with a confidence 
+##of 95%. The value 35 is a significant outlier. 
 ##@end group
 ##@end example
 ##@seealso{deandixon(), dixon(), grubbs(), grubbs2(), nalimov(), shapirowilk()}
