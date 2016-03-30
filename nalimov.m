@@ -18,7 +18,7 @@
 ##@deftypefn {Function File} [@var{outlierfree}, @var{outlier}] = nalimov(@var{n}, @var{p})
 ##
 ##"nalimov()" performs a Nalimov outlier test. IMPORTANT: Do use nalimov() with
-##care. It indicates outliers very strict and is controversial discussed.
+##care. It indicates outliers very strict and is controversially discussed.
 ##
 ##@var{outlierfree} contains a vector of outlier-free values, @var{outlier}
 ##contains the outlier values. 

@@ -14,7 +14,7 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {Function File} {@var{s} =} sboxplot (@var{v}, @var{vertical})
+## @deftypefn {Function File} {@var{s} =} sboxplot (@var{v}, @var{vert})
 ##
 ## Produce a box plot for a single data set committed as a vector.
 ##
@@ -49,7 +49,7 @@
 ## Plots a vertical boxplot.
 ##
 ## sboxplot (data, 0)
-## set(gca(), "ytick", 1, "yticklabel", {"Measured Data"})
+## set(gca(), "ytick", 1, "yticklabel", @{"Measured Data"@})
 ## title("My boxplot");
 ## xlabel("values");
 ##
