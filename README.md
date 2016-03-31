@@ -41,8 +41,8 @@ print -dpng boxplot.png;
 
 You have two opportunities:
 
-1. Copy all m-files in a arbitrary directory, e.g. `~/octave/samplestat` and add the path in one of Octave's startup files, e.g. `~/.octaverc`, by appending `addpath('~/octave/samplepath');` to this file, or
-2. Download the package file `samplestat-1.0.0.tar.gz` from the "package" folder and then start Octave and type in Octave's prompt: `pkg install /path/to/samplestat-1.0.0.tar.gz` and then `pkg load samplestat`.
+1. Copy all m-files of the `inst/` folder in an arbitrary directory, e.g. `~/octave/samplestat` and add the path in one of Octave's startup files, e.g. `~/.octaverc`, by appending `addpath('~/octave/samplepath');` to this file, or
+2. Click on "releases" on the top of the [page](https://github.com/haniibrahim/samplestat-octave-functions). Choose a version > 1.0.0 and click on the tar.gz-Link to download code. Then start Octave and type in Octave's prompt: `pkg install /path/to/samplestat-octave-functions-X.X.X.tar.gz` and then `pkg load samplestat`.
 
 `~`stands for your home directory (Unix) and your profile directory (Windows) respectivly.
 
