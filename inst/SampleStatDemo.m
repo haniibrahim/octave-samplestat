@@ -64,7 +64,7 @@ Maximum                     : %g\n\
 fprintf("\n"); % blank line
 
 fprintf("\
-63 percent of the values will stray arount %g +- %g (S.D.). %s of the values \
+68 percent of the values will stray arount %g +- %g (S.D.). %s of the values \
 will be expected around %g +/- %g (Range of disp. of the values, stray area). \
 With a propability of %s the mean of %g will stray around %g +/- %g (Rage of \
 dispersion of the mean, trust area).\n", x, s, p, x, sa, p, x, x, ta);
